@@ -1,0 +1,25 @@
+{
+  "root": true,
+  "env": {
+    "browser": true
+  },
+  "extends": [
+    "airbnb",
+    "plugin:jsx-a11y/recommended",
+    "prettier",
+    "prettier/react"
+  ],
+  "plugins": [
+    "jsx-a11y",
+    "prettier"
+  ],
+  "settings": {
+    "react": {
+      "version": "999.999.999"
+    }
+  },
+  "rules": {
+    "semi": ["error", "always"],
+    "no-console": "off"
+  }
+}
