@@ -1,18 +1,29 @@
 const path = require('path');
 
-module.exports = {
-  entry: './src/index.js',
-  output: {
-    filename: 'worker.js',
-    path: path.resolve(__dirname, 'docs'),
-  },
-  module: {
-    rules: [{
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      use: {
-        loader: "babel-loader"
-      }
-    }]
-  }
+const loaders = {
+  rules: [{
+    test: /\.(js|jsx)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: "babel-loader",
+    },
+  }],
 };
+
+module.exports = [{
+    entry: './src/main/index.js',
+    output: {
+      filename: 'main.js',
+      path: path.join(__dirname, 'docs'),
+    },
+    module: loaders,
+  },
+  {
+    entry: './src/worker/index.js',
+    output: {
+      filename: 'worker.js',
+      path: path.join(__dirname, 'docs'),
+    },
+    module: loaders,
+  },
+];

@@ -1,0 +1,9 @@
+.center {
+  text-align: center;
+}
+
+fieldset {
+  border-style: dashed;
+  padding: 1em;
+  margin: 1em;
+}

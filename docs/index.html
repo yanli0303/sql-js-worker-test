@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>IndexedDB + sql.js + Worker</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="main.js"></script>
-  </head>
-  <body>
-    <!-- page content -->
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IndexedDB + sql.js + Worker</title>
+  <link rel="stylesheet"
+    href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<h1 class="center">IndexedDB + sql.js + Worker</h1>
+<p class="center">
+  CPU usage, RAM usage, IndexedDB storage, and FTS search tests
+  against sql.js using Workers
+</p>
+<fieldset data-count={messageCount}>
+  <legend>Message to Worker</legend>
+  <div class="center">
+    <button type="button" class="pure-button pure-button-primary"
+      id="btn-send">SEND</button>
+  </div>
+</fieldset>
+<script src="main.js"></script>
+</body>
 </html>
