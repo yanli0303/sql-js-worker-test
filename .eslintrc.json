@@ -3,15 +3,15 @@
   "env": {
     "browser": true
   },
+  "globals": {
+    "M": true
+  },
   "extends": [
     "airbnb",
-    "plugin:jsx-a11y/recommended",
-    "prettier",
-    "prettier/react"
+    "plugin:jsx-a11y/recommended"
   ],
   "plugins": [
-    "jsx-a11y",
-    "prettier"
+    "jsx-a11y"
   ],
   "settings": {
     "react": {
@@ -19,8 +19,17 @@
     }
   },
   "rules": {
-    "semi": ["error", "always"],
+    "comma-dangle": ["error", "always-multiline"],
+    "import/prefer-default-export": "off",
     "no-console": "off",
-    "comma-dangle": ["error", "always-multiline"]
+    "no-restricted-globals": "off",
+    "object-curly-newline": [
+      "error",
+      {
+        "minProperties": 4,
+        "multiline": true
+      }
+    ],
+    "semi": ["error", "always"]
   }
 }

@@ -1,9 +1,13 @@
-.center {
-  text-align: center;
+header {
+  margin-bottom: 2em;
 }
 
 fieldset {
-  border-style: dashed;
-  padding: 1em;
-  margin: 1em;
+  border-style: none;
+}
+
+textarea {
+  margin: 0.5em auto 1em;
+  padding: 0.35em 0.5em;
+  min-height: 8em;
 }
