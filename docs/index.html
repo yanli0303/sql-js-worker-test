@@ -4,8 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>IndexedDB + sql.js + Worker</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.0/codemirror.css">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -31,7 +35,8 @@
       <li>Load data from IndexedDB if any.</li>
     </ol>
     <footer class="center-align">
-      <button class="waves-effect waves-light btn" id="btn-open">OPEN</button>
+      <button class="waves-effect waves-light btn" id="btn-open">OPEN SQLITE
+        DATABASE IN WORKER</button>
     </footer>
   </tab>
   <div class="col s12" id="action-exec-sql">
@@ -39,7 +44,7 @@
     <textarea id="txt-exec-sql" placeholder="Enter SQL here..."></textarea>
     <footer class="center-align">
       <a class="dropdown-trigger btn blue" href='#'
-        data-target='ddl-select-sql'>SQL</a>
+        data-target='ddl-select-sql'>SELECT SQL</a>
       <ul id="ddl-select-sql" class="dropdown-content">
         <li><a href="#!" data-type="create-table">CREATE TABLE</a></li>
         <li><a href="#!" data-type="select-star">SELECT * FROM</a></li>
@@ -63,15 +68,18 @@
   <div class="col s12" id="action-match">Test 4</div>
   <div class="col s12" id="action-clear">Test 4</div>
 </div>
-<textarea id="message" placeholder="Enter JSON here...">{
-    "action": "open",
-    "id": 1
-  }</textarea>
-<div class="center-align">
-  <button type="button" id="send">SEND</button>
-</div>
 <div id="error" class="container"></div>
+<button type="button" class="waves-effect waves-light btn red"
+  id="clear-output">Clear
+  output</button>
 <pre id="output" class="container"></pre>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.0/codemirror.js">
+</script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.0/mode/sql/sql.min.js">
+</script>
+
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
 </script>

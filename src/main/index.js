@@ -1,13 +1,10 @@
 import { createWorker } from './createWorker';
-import { init as initExecSQL } from './handleExecSQL';
-import { init as initOpen } from './handleOpen';
+import { init as initExecSQL } from './tabs/execSQL';
+import { init as initOpen } from './tabs/open';
+import { init as initInsert } from './tabs/insert';
 
-import {
-  sendButton,
-  messageInput,
-  errorDiv,
-  outputDiv,
-} from './getElementsById';
+const errorDiv = () => document.getElementById('error');
+const outputDiv = () => document.getElementById('output');
 
 const worker = createWorker();
 
@@ -20,7 +17,8 @@ const clearOutput = () => {
 };
 
 const showOutput = (output) => {
-  outputDiv().innerHTML += `${JSON.stringify(output, null, 2)}\n\n`;
+  const div = outputDiv();
+  div.innerHTML = `${JSON.stringify(output, null, 2)}\n\n${div.innerHTML}`;
 };
 
 worker.addEventListener('message', (event) => {
@@ -35,22 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
   M.Tabs.init(elements);
 
   const ddl = document.querySelectorAll('.dropdown-trigger');
-  M.Dropdown.init(ddl, { constrainWidth: false });
+  M.Dropdown.init(ddl, { constrainWidth: false, coverTrigger: false });
 
   initExecSQL(worker, showError);
   initOpen(worker, showError);
+  initInsert(worker, showError);
 });
 
-sendButton().addEventListener('click', () => {
-  const text = messageInput().value.trim();
-  let json;
-  try {
-    json = JSON.parse(text);
-  } catch (e) {
-    showError(e);
-    return;
-  }
-
-  clearOutput();
-  worker.postMessage(json);
-});
+document
+  .getElementById('clear-output')
+  .addEventListener('click', clearOutput);

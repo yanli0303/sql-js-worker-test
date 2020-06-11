@@ -4,7 +4,8 @@
     "browser": true
   },
   "globals": {
-    "M": true
+    "M": true,
+    "CodeMirror": true
   },
   "extends": [
     "airbnb",

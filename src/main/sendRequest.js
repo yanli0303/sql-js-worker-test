@@ -18,9 +18,17 @@ const hideProgress = (progress, button) => {
 
 export const sendRequest = (
   worker,
-  request,
+  parseForm,
   button,
+  showError,
 ) => {
+  let request;
+  try {
+    request = parseForm();
+  } catch (e) {
+    showError(e);
+  }
+
   const progress = showProgress(button);
   worker.postMessage(request);
 
