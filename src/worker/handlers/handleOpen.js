@@ -18,9 +18,14 @@ export const handleOpen = async (request, globals) => {
     INDEXED_DB_NAME,
     DOCUMENT_KEY,
     INDEXED_DB_TIMEOUT,
-  );
+  ).catch((error) => {
+    console.error('Failed to load data from IndexedDB:', error);
+  });
 
-  globals.sqlite = new globals.SQLiteDBClass(
-    data ? new Uint8Array(data) : undefined,
-  );
+  let sql = null;
+  if (data) {
+    sql = data instanceof Uint8Array ? data : new Uint8Array(data);
+  }
+
+  globals.sqlite = new globals.SQLiteDBClass(sql);
 };
