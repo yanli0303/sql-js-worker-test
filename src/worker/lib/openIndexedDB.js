@@ -17,7 +17,6 @@ export const openIndexedDB = (dbName) => new Promise((resolve, reject) => {
     const { target } = event || {};
     const { result: db } = target || {};
     if (db) {
-      console.log(`Opened IndexedDB '${dbName}', version is ${db.version}.`);
       resolve(db);
     } else {
       reject(new Error('onsuccess was called back but unable to get the database instance.'));

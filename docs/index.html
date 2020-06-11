@@ -6,7 +6,6 @@
   <title>IndexedDB + sql.js + Worker</title>
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -17,16 +16,60 @@
     against sql.js using Workers
   </p>
 </header>
-<fieldset>
-  <legend>Message to Worker</legend>
-  <textarea id="message" placeholder="Enter JSON here...">{
+<div class="row">
+  <ul class="tabs">
+    <li class="tab col s3"><a class="active" href="#action-open">OPEN</a></li>
+    <li class="tab col s3"><a href="#action-exec-sql">EXEC SQL</a></li>
+    <li class="tab col s3"><a href="#action-insert">INSERT</a></li>
+    <li class="tab col s3"><a href="#action-match">MATCH</a></li>
+    <li class="tab col s3"><a href="#action-clear">CLEAR</a></li>
+  </ul>
+  <tab class="col s12" id="action-open">
+    <ol>
+      <li>Load sql.js library in worker - one time only;</li>
+      <li>Creates SQLite database;</li>
+      <li>Load data from IndexedDB if any.</li>
+    </ol>
+    <footer class="center-align">
+      <button class="waves-effect waves-light btn" id="btn-open">OPEN</button>
+    </footer>
+  </tab>
+  <div class="col s12" id="action-exec-sql">
+    <p>Execute SQL entered below and show results.</p>
+    <textarea id="txt-exec-sql" placeholder="Enter SQL here..."></textarea>
+    <footer class="center-align">
+      <a class="dropdown-trigger btn blue" href='#'
+        data-target='ddl-select-sql'>SQL</a>
+      <ul id="ddl-select-sql" class="dropdown-content">
+        <li><a href="#!" data-type="create-table">CREATE TABLE</a></li>
+        <li><a href="#!" data-type="select-star">SELECT * FROM</a></li>
+        <li><a href="#!" data-type="select-count">SELECT COUNT(*)</a></li>
+      </ul>
+      <button class="waves-effect waves-light btn" id="btn-exec-sql">EXEC
+        SQL</button>
+    </footer>
+  </div>
+  <div class="col s12" id="action-insert">
+    <div class="container">
+      <div class="row">
+
+      </div>
+    </div>
+    <footer class="center-align">
+      <button class="waves-effect waves-light btn" id="btn-insert">INSERT
+        10K</button>
+    </footer>
+  </div>
+  <div class="col s12" id="action-match">Test 4</div>
+  <div class="col s12" id="action-clear">Test 4</div>
+</div>
+<textarea id="message" placeholder="Enter JSON here...">{
     "action": "open",
     "id": 1
   }</textarea>
-  <div class="center-align">
-    <button type="button" id="send">SEND</button>
-  </div>
-</fieldset>
+<div class="center-align">
+  <button type="button" id="send">SEND</button>
+</div>
 <div id="error" class="container"></div>
 <pre id="output" class="container"></pre>
 <script

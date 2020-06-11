@@ -1,5 +1,8 @@
-import { handleOpen } from './handlers/handleOpen';
+import { handleClear } from './handlers/handleClear';
 import { handleExecSQL } from './handlers/handleExecSQL';
+import { handleInsert } from './handlers/handleInsert';
+import { handleMatch } from './handlers/handleMatch';
+import { handleOpen } from './handlers/handleOpen';
 
 const state = {
   sqlite: null,
@@ -7,8 +10,11 @@ const state = {
 };
 
 const actionHandlers = {
-  open: handleOpen,
+  clear: handleClear,
   exec: handleExecSQL,
+  insert: handleInsert,
+  match: handleMatch,
+  open: handleOpen,
 };
 
 self.addEventListener('message', ({ data }) => {

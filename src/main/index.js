@@ -1,4 +1,6 @@
 import { createWorker } from './createWorker';
+import { init as initExecSQL } from './handleExecSQL';
+import { init as initOpen } from './handleOpen';
 
 import {
   sendButton,
@@ -10,7 +12,6 @@ import {
 const worker = createWorker();
 
 const showError = (message) => {
-  debugger; // eslint-disable-line
   errorDiv().innerText = message.toString();
 };
 
@@ -30,8 +31,14 @@ worker.addEventListener('message', (event) => {
 worker.addEventListener('error', showError);
 
 document.addEventListener('DOMContentLoaded', () => {
-  const elements = document.querySelectorAll('.dropdown-trigger');
-  M.Dropdown.init(elements);
+  const elements = document.querySelectorAll('.tabs');
+  M.Tabs.init(elements);
+
+  const ddl = document.querySelectorAll('.dropdown-trigger');
+  M.Dropdown.init(ddl, { constrainWidth: false });
+
+  initExecSQL(worker, showError);
+  initOpen(worker, showError);
 });
 
 sendButton().addEventListener('click', () => {
