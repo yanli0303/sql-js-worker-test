@@ -58,7 +58,7 @@
   <div class="col s12" id="action-insert">
     <p>Insert into table <code>one_million</code>.</p>
     <footer class="center-align">
-      <button class="waves-effect waves-light btn yellow"
+      <button class="waves-effect waves-light btn orange"
         id="btn-insert-10">INSERT
         10K</button>
       <button class="waves-effect waves-light btn red"
@@ -71,16 +71,40 @@
       placeholder="Enter any text here..."></textarea>
     <footer class="center-align">
       <button class="waves-effect waves-light btn blue"
-        id="btn-match">MATCH</button>
+        id="btn-match-whole">MATCH
+        WHOLE</button>
+      <button class="waves-effect waves-light btn cyan"
+        id="btn-match-cross-join">MATCH
+        LINE BY LINE</button>
     </footer>
   </div>
-  <div class="col s12" id="action-clear">Test 4</div>
+  <div class="col s12" id="action-clear">
+    <ol>
+      <li>Close SQLite database;</li>
+      <li>Erase SQLite database from memory;</li>
+      <li>Delete IndexedDB database.</li>
+    </ol>
+    <footer class="center-align">
+      <button class="waves-effect waves-light btn red"
+        id="btn-clear">CLEAR</button>
+    </footer>
+  </div>
 </div>
-<div id="error" class="container"></div>
-<button type="button" class="waves-effect waves-light btn red"
-  id="clear-output">Clear
-  output</button>
-<pre id="output" class="container"></pre>
+<div class="container center-align">
+  <div class="row">
+    <div id="error" class="col s12"></div>
+  </div>
+  <div class="row">
+    <button type="button" class="waves-effect waves-light btn red"
+      id="clear-output"><i class="material-icons left">delete_sweep</i>Clear
+      Outputs</button>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <pre id="output" class="left-align"></pre>
+    </div>
+  </div>
+</div>
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.0/codemirror.js">
 </script>

@@ -29,7 +29,7 @@ const makeTempTableSQL = (matchTextLines) => {
   return sqlLines.join('\n');
 };
 
-export const handleMatch = async (request, globals) => {
+const matchLineByLine = async (request, globals) => {
   const { text, table, columns } = request;
   const lines = splitLongText(text);
   let sql = makeTempTableSQL(lines);
@@ -44,4 +44,29 @@ export const handleMatch = async (request, globals) => {
     sql,
     readonly: true,
   }, globals);
+};
+
+const matchWhole = async (request, globals) => {
+  const { text, table, columns } = request;
+  const lines = splitLongText(text).join('\n');
+
+  const where = columns
+    .map((col) => `instr(:text, ${col}) > 0`)
+    .join(' OR ');
+  const sql = `SELECT * FROM ${table} WHERE ${where} COLLATE NOCASE;`;
+
+  return handleExecSQL({
+    ...request,
+    sql,
+    params: { ':text': lines },
+    readonly: true,
+  }, globals);
+};
+
+export const handleMatch = async (request, globals) => {
+  if (request.matchMode === 'single-sql') {
+    return matchWhole(request, globals);
+  }
+
+  return matchLineByLine(request, globals);
 };

@@ -12,6 +12,7 @@ fieldset {
 }
 
 textarea {
+  border: 1px solid #2196f3;
   margin: 0.5em auto 1em;
   padding: 0.35em 0.5em;
   min-height: 8em;
