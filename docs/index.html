@@ -14,11 +14,11 @@
 </head>
 <body>
 <header class="center-align">
-  <h3>IndexedDB + sql.js + Worker</h3>
-  <p>
-    CPU usage, RAM usage, IndexedDB storage, and FTS search tests
-    against sql.js using Workers
-  </p>
+  <h3>sql.js + Worker + IndexedDB</h5>
+    <p>
+      CPU usage, RAM usage, IndexedDB as storage, and FTS search tests
+      against sql.js using Workers
+    </p>
 </header>
 <div class="row">
   <ul class="tabs">
@@ -35,7 +35,8 @@
       <li>Load data from IndexedDB if any.</li>
     </ol>
     <footer class="center-align">
-      <button class="waves-effect waves-light btn" id="btn-open">OPEN SQLITE
+      <button class="waves-effect waves-light btn blue" id="btn-open">OPEN
+        SQLITE
         DATABASE IN WORKER</button>
     </footer>
   </tab>
@@ -43,26 +44,26 @@
     <p>Execute SQL entered below and show results.</p>
     <textarea id="txt-exec-sql" placeholder="Enter SQL here..."></textarea>
     <footer class="center-align">
-      <a class="dropdown-trigger btn blue" href='#'
+      <a class="dropdown-trigger btn" href='#'
         data-target='ddl-select-sql'>SELECT SQL</a>
       <ul id="ddl-select-sql" class="dropdown-content">
         <li><a href="#!" data-type="create-table">CREATE TABLE</a></li>
         <li><a href="#!" data-type="select-star">SELECT * FROM</a></li>
         <li><a href="#!" data-type="select-count">SELECT COUNT(*)</a></li>
       </ul>
-      <button class="waves-effect waves-light btn" id="btn-exec-sql">EXEC
+      <button class="waves-effect waves-light btn blue" id="btn-exec-sql">EXEC
         SQL</button>
     </footer>
   </div>
   <div class="col s12" id="action-insert">
-    <div class="container">
-      <div class="row">
-
-      </div>
-    </div>
+    <p>Insert into table <code>one_million</code>.</p>
     <footer class="center-align">
-      <button class="waves-effect waves-light btn" id="btn-insert">INSERT
+      <button class="waves-effect waves-light btn yellow"
+        id="btn-insert-10">INSERT
         10K</button>
+      <button class="waves-effect waves-light btn red"
+        id="btn-insert-100">INSERT
+        100K</button>
     </footer>
   </div>
   <div class="col s12" id="action-match">Test 4</div>

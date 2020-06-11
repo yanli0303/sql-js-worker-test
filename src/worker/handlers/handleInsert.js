@@ -1,5 +1,10 @@
-import { handleExecSQL } from './handleExecSQL';
 import { normalizeString } from '../lib/normalizeString';
+import { saveToIndexedDB } from '../lib/saveToIndexedDB';
+import {
+  INDEXED_DB_NAME,
+  DOCUMENT_KEY,
+  INDEXED_DB_TIMEOUT,
+} from './handleOpen';
 
 const eliminateInvisibleChars = (objects, keys) => {
   objects.forEach((obj) => {
@@ -29,10 +34,17 @@ export const handleInsert = async (request, globals) => {
   const values = keys.map((it) => `:${it}`).join(',');
 
   const sql = `INSERT INTO ${table} (${columns}) VALUES (${values});`;
-  return handleExecSQL({
-    ...request,
-    sql,
-    params: rows,
-    readonly: false,
-  }, globals);
+
+  const { sqlite } = globals;
+  rows.forEach((row) => sqlite.run(sql, row));
+
+  const buffer = sqlite.export();
+  await saveToIndexedDB(
+    INDEXED_DB_NAME,
+    DOCUMENT_KEY,
+    buffer,
+    INDEXED_DB_TIMEOUT,
+  );
+
+  return `Inserted ${rows.length} rows.`;
 };

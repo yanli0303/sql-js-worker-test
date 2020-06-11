@@ -3,7 +3,7 @@ import { sendRequest } from '../sendRequest';
 const columns = 'SN,NAME,COMPANY,MANGER,OWNER,COUNTRY,BUDGET,PROFIT'
   .toLowerCase()
   .split(',')
-  .map((it) => `\n  ${it} TEXT`)
+  .map((it) => `\n  ${it} ${['sn', 'budget', 'profit'].includes(it) ? 'INTEGER' : 'TEXT'}`)
   .join(',');
 
 const SQL_SCRIPTS = {
