@@ -1,4 +1,5 @@
 import { sendRequest } from '../sendRequest';
+import { TABLE_NAME } from './execSQL';
 
 let sn = -1;
 const randomInteger = () => Math.floor(Math.random() * 1000000);
@@ -32,7 +33,7 @@ const parseForm = (count) => {
   return () => ({
     action: 'insert',
     id: Date.now() + Math.random(),
-    table: 'one_million',
+    table: TABLE_NAME,
     rows,
   });
 };
@@ -47,6 +48,29 @@ const makeInsertHandler = (count, worker, showError) => (event) => {
 };
 
 export const init = (worker, showError) => {
+  const editor = CodeMirror.fromTextArea(
+    document.getElementById('ta-insert-demo'),
+    {
+      mode: 'text/x-mysql',
+      tabSize: 2,
+      lineWrapping: true,
+      lineNumbers: true,
+      matchBrackets: true,
+      readOnly: true,
+    },
+  );
+  editor.setValue(`/* below is an example */
+INSERT INTO one_million (
+  'sn', 'name', 'company',
+  'manger', 'owner', 'country',
+  'budget', 'profit'
+) VALUES (
+  :sn, :name, :company,
+  :manger, :owner, :country,
+  :budget, :profit
+);`);
+  editor.refresh();
+
   document.getElementById('btn-insert-10')
     .addEventListener('click', makeInsertHandler(
       10000,

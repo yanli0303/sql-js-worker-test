@@ -13,81 +13,87 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header class="center-align">
+<header class="container center-align">
   <h3>sql.js + Worker + IndexedDB</h5>
     <p>
       CPU usage, RAM usage, IndexedDB as storage, and FTS search tests
-      against sql.js using Workers
+      against <a target="_blank"
+        href="https://github.com/sql-js/sql.js">sql.js</a> using Workers
     </p>
 </header>
-<div class="row">
-  <ul class="tabs">
-    <li class="tab col s3"><a class="active" href="#action-open">OPEN</a></li>
-    <li class="tab col s3"><a href="#action-exec-sql">EXEC SQL</a></li>
-    <li class="tab col s3"><a href="#action-insert">INSERT</a></li>
-    <li class="tab col s3"><a href="#action-match">MATCH</a></li>
-    <li class="tab col s3"><a href="#action-clear">CLEAR</a></li>
-  </ul>
-  <tab class="col s12" id="action-open">
-    <ol>
-      <li>Load sql.js library in worker - one time only;</li>
-      <li>Creates SQLite database;</li>
-      <li>Load data from IndexedDB if any.</li>
-    </ol>
-    <footer class="center-align">
-      <button class="waves-effect waves-light btn blue" id="btn-open">OPEN
-        SQLITE
-        DATABASE IN WORKER</button>
-    </footer>
-  </tab>
-  <div class="col s12" id="action-exec-sql">
-    <p>Execute SQL entered below and show results.</p>
-    <textarea id="txt-exec-sql" placeholder="Enter SQL here..."></textarea>
-    <footer class="center-align">
-      <a class="dropdown-trigger btn" href='#'
-        data-target='ddl-select-sql'>SELECT SQL</a>
-      <ul id="ddl-select-sql" class="dropdown-content">
-        <li><a href="#!" data-type="create-table">CREATE TABLE</a></li>
-        <li><a href="#!" data-type="select-star">SELECT * FROM</a></li>
-        <li><a href="#!" data-type="select-count">SELECT COUNT(*)</a></li>
-      </ul>
-      <button class="waves-effect waves-light btn blue" id="btn-exec-sql">EXEC
-        SQL</button>
-    </footer>
-  </div>
-  <div class="col s12" id="action-insert">
-    <p>Insert into table <code>one_million</code>.</p>
-    <footer class="center-align">
-      <button class="waves-effect waves-light btn orange"
-        id="btn-insert-10">INSERT
-        10K</button>
-      <button class="waves-effect waves-light btn red"
-        id="btn-insert-100">INSERT
-        100K</button>
-    </footer>
-  </div>
-  <div class="col s12" id="action-match">
-    <textarea id='ta-match-text'
-      placeholder="Enter any text here..."></textarea>
-    <footer class="center-align">
-      <button class="waves-effect waves-light btn blue"
-        id="btn-match-whole">MATCH
-        WHOLE</button>
-      <button class="waves-effect waves-light btn cyan"
-        id="btn-match-cross-join">MATCH
-        LINE BY LINE</button>
-    </footer>
-  </div>
-  <div class="col s12" id="action-clear">
-    <ol>
-      <li>Close SQLite database;</li>
-      <li>Erase SQLite database from memory;</li>
-      <li>Delete IndexedDB database.</li>
-    </ol>
-    <footer class="center-align">
-      <button class="waves-effect waves-light btn red"
-        id="btn-clear">CLEAR</button>
-    </footer>
+<div class="container">
+  <div class="row">
+    <ul class="tabs">
+      <li class="tab col s3"><a class="active" href="#action-open">OPEN</a></li>
+      <li class="tab col s3"><a href="#action-exec-sql">EXEC SQL</a></li>
+      <li class="tab col s3"><a href="#action-insert">INSERT</a></li>
+      <li class="tab col s3"><a href="#action-match">MATCH</a></li>
+      <li class="tab col s3"><a href="#action-clear">CLEAR</a></li>
+    </ul>
+    <tab class="col s12" id="action-open">
+      <ol>
+        <li>Load sql.js library in worker - one time only;</li>
+        <li>Creates SQLite database;</li>
+        <li>Load data from IndexedDB if any.</li>
+      </ol>
+      <footer>
+        <button class="waves-effect waves-light btn blue" id="btn-open">OPEN
+          SQLITE DATABASE IN WORKER</button>
+      </footer>
+    </tab>
+    <tab class="col s12" id="action-exec-sql">
+      <p class="center-align">Enter SQL below and execute</p>
+      <textarea id="txt-exec-sql" placeholder="Enter SQL here..."></textarea>
+      <footer>
+        <a class="dropdown-trigger btn" href='#'
+          data-target='ddl-select-sql'>SELECT SQL</a>
+        <ul id="ddl-select-sql" class="dropdown-content">
+          <li><a href="#!" data-type="create-table">CREATE TABLE</a></li>
+          <li><a href="#!" data-type="create-table-index">CREATE TABLE WITH
+              INDEX</a></li>
+          <li><a href="#!" data-type="list-index">LIST INDEX</a></li>
+          <li><a href="#!" data-type="select-star">SELECT * FROM</a></li>
+          <li><a href="#!" data-type="select-count">SELECT COUNT(*)</a></li>
+        </ul>
+        <button class="waves-effect waves-light btn blue" id="btn-exec-sql">EXEC
+          SQL</button>
+      </footer>
+    </tab>
+    <tab class="col s12" id="action-insert">
+      <p class="center-align">Insert into SQLite database</p>
+      <textarea disabled id='ta-insert-demo'></textarea>
+      <footer>
+        <button class="waves-effect waves-light btn orange"
+          id="btn-insert-10">INSERT
+          10K</button>
+        <button class="waves-effect waves-light btn red"
+          id="btn-insert-100">INSERT
+          100K</button>
+      </footer>
+    </tab>
+    <tab class="col s12" id="action-match">
+      <textarea id='ta-match-text'
+        placeholder="Enter any text here..."></textarea>
+      <footer class="center-align">
+        <button class="waves-effect waves-light btn blue"
+          id="btn-match-whole">MATCH
+          WHOLE</button>
+        <button class="waves-effect waves-light btn cyan"
+          id="btn-match-cross-join">MATCH
+          LINE BY LINE</button>
+      </footer>
+    </tab>
+    <tab class="col s12" id="action-clear">
+      <ol>
+        <li>Close SQLite database;</li>
+        <li>Erase SQLite database from memory;</li>
+        <li>Delete IndexedDB database.</li>
+      </ol>
+      <footer>
+        <button class="waves-effect waves-light btn red"
+          id="btn-clear">CLEAR</button>
+      </footer>
+    </tab>
   </div>
 </div>
 <div class="container center-align">
@@ -111,7 +117,6 @@
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.0/mode/sql/sql.min.js">
 </script>
-
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
 </script>

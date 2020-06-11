@@ -31,17 +31,17 @@ worker.addEventListener('message', (event) => {
 worker.addEventListener('error', showError);
 
 document.addEventListener('DOMContentLoaded', () => {
+  initOpen(worker, showError);
+  initExecSQL(worker, showError);
+  initInsert(worker, showError);
+  initMatch(worker, showError);
+  initClear(worker, showError);
+
   const elements = document.querySelectorAll('.tabs');
   M.Tabs.init(elements);
 
   const ddl = document.querySelectorAll('.dropdown-trigger');
   M.Dropdown.init(ddl, { constrainWidth: false, coverTrigger: false });
-
-  initExecSQL(worker, showError);
-  initOpen(worker, showError);
-  initInsert(worker, showError);
-  initMatch(worker, showError);
-  initClear(worker, showError);
 });
 
 document

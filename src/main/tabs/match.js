@@ -1,6 +1,6 @@
 import { sendRequest } from '../sendRequest';
+import { TABLE_NAME } from './execSQL';
 
-const TABLE_NAME = 'one_million';
 const columns = 'SN,NAME,COMPANY,MANGER,OWNER,COUNTRY,BUDGET,PROFIT'
   .toLowerCase()
   .split(',');

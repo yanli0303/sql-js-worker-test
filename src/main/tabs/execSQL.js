@@ -1,15 +1,27 @@
 import { sendRequest } from '../sendRequest';
 
+export const TABLE_NAME = 'one_million';
+
+const intColumns = ['sn', 'budget', 'profit'];
 const columns = 'SN,NAME,COMPANY,MANGER,OWNER,COUNTRY,BUDGET,PROFIT'
   .toLowerCase()
-  .split(',')
-  .map((it) => `\n  ${it} ${['sn', 'budget', 'profit'].includes(it) ? 'INTEGER' : 'TEXT'}`)
+  .split(',');
+
+const createTableColumns = () => columns
+  .map((it) => `\n  ${it} ${intColumns.includes(it) ? 'INTEGER' : 'TEXT'}`)
   .join(',');
 
+const createIndex = () => columns
+  .filter((it) => !intColumns.includes(it))
+  .map((it) => `CREATE INDEX idx_${TABLE_NAME}_${it} ON ${TABLE_NAME} (${it});\n`)
+  .join('');
+
 const SQL_SCRIPTS = {
-  'create-table': `CREATE TABLE one_million (\n  id INTEGER PRIMARY KEY,${columns}\n);`,
-  'select-star': 'SELECT * FROM one_million LIMIT 5;',
-  'select-count': 'SELECT COUNT(id) FROM one_million;',
+  'create-table': `CREATE TABLE ${TABLE_NAME} (\n  id INTEGER PRIMARY KEY,${createTableColumns()}\n);`,
+  'create-table-index': `CREATE TABLE ${TABLE_NAME} (\n  id INTEGER PRIMARY KEY,${createTableColumns()}\n);\n\n${createIndex()}`,
+  'list-index': `PRAGMA index_list(${TABLE_NAME});`,
+  'select-star': `SELECT * FROM ${TABLE_NAME} LIMIT 5;`,
+  'select-count': `SELECT COUNT(id) FROM ${TABLE_NAME};`,
 };
 
 let editor;

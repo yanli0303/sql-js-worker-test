@@ -7,6 +7,10 @@ import {
 
 export const handleExecSQL = async (request, globals) => {
   const { sqlite } = globals;
+  if (!sqlite) {
+    throw new Error('Database is not open.');
+  }
+
   const { sql, params, readonly } = request;
 
   console.log('Executing SQL:', sql);

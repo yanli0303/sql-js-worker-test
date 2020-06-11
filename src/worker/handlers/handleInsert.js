@@ -29,7 +29,7 @@ export const handleInsert = async (request, globals) => {
   // Not all field names are valid column names
   // const columns = fields.map(it => it.replace(/\W/g, '_'));
 
-  const columns = keys.map((it) => `"${it}"`).join(',');
+  const columns = keys.map((it) => `'${it}'`).join(',');
   const values = keys.map((it) => `:${it}`).join(',');
   const sql = `INSERT INTO ${table} (${columns}) VALUES (${values});`;
   const { sqlite } = globals;

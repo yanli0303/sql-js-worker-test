@@ -2,8 +2,8 @@ header {
   margin-bottom: 2em;
 }
 
-fieldset {
-  border-style: none;
+footer {
+  text-align: center;
 }
 
 .CodeMirror {
@@ -15,5 +15,5 @@ textarea {
   border: 1px solid #2196f3;
   margin: 0.5em auto 1em;
   padding: 0.35em 0.5em;
-  min-height: 8em;
+  min-height: 12em;
 }
