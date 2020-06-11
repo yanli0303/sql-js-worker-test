@@ -16,6 +16,7 @@ export const saveToIndexedDB = (
   };
 
   const handleResult = (result) => {
+    console.log(`Data saved to IndexedDB ${dbName}.`);
     if (timeoutId) clearTimeout(timeoutId);
     if (db) db.close();
     resolve(result);
@@ -28,6 +29,7 @@ export const saveToIndexedDB = (
     ));
   }, timeout);
 
+  console.log(`Saving data to IndexedDB ${dbName}.`);
   openIndexedDB(dbName)
     .then((result) => {
       db = result;

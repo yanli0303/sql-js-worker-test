@@ -32,11 +32,15 @@ export const handleInsert = async (request, globals) => {
 
   const columns = keys.map((it) => `"${it}"`).join(',');
   const values = keys.map((it) => `:${it}`).join(',');
-
   const sql = `INSERT INTO ${table} (${columns}) VALUES (${values});`;
-
   const { sqlite } = globals;
-  rows.forEach((row) => sqlite.run(sql, row));
+
+  rows.forEach((row, index) => {
+    sqlite.run(sql, row);
+    if (index > 0 && index % 1000 === 0) {
+      console.log('Inserted 1000 rows.');
+    }
+  });
 
   const buffer = sqlite.export();
   await saveToIndexedDB(

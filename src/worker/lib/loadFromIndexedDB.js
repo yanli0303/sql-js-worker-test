@@ -15,6 +15,7 @@ export const loadFromIndexedDB = (
   };
 
   const handleResult = (result) => {
+    console.log(`Data loaded from IndexedDB ${dbName}`, result);
     if (timeoutId) clearTimeout(timeoutId);
     if (db) db.close();
     resolve(result);
@@ -27,6 +28,7 @@ export const loadFromIndexedDB = (
     ));
   }, timeout);
 
+  console.log(`Loading data from IndexedDB ${dbName}...`);
   openIndexedDB(dbName)
     .then((result) => {
       db = result;

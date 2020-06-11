@@ -19,7 +19,7 @@ export const handleOpen = async (request, globals) => {
     DOCUMENT_KEY,
     INDEXED_DB_TIMEOUT,
   ).catch((error) => {
-    console.error('Failed to load data from IndexedDB:', error);
+    console.error('Failed to load data from IndexedDB, ignored and opening SQLite database:', error);
   });
 
   let sql = null;

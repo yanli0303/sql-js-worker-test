@@ -8,5 +8,5 @@ export const handleClear = async (request, globals) => {
     globals.sqlite = null;
   }
 
-  clearIndexedDB(INDEXED_DB_NAME);
+  return clearIndexedDB(INDEXED_DB_NAME);
 };
