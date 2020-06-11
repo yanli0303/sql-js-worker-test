@@ -19,10 +19,12 @@ const makeTempTableSQL = (matchTextLines) => {
     const line = matchTextLines[i];
     if (line.length > 0) {
       const escapedLine = line.replace("'", "''");
-      const lastChar = i < l - 1 ? ',' : ';';
-      sqlLines.push(`('${escapedLine}')${lastChar}`);
+      sqlLines.push(`('${escapedLine}'),`);
     }
   }
+
+  const lastLine = sqlLines.pop();
+  sqlLines.push(`${lastLine.substr(0, lastLine.length - 1)};`);
 
   return sqlLines.join('\n');
 };
@@ -35,7 +37,7 @@ export const handleMatch = async (request, globals) => {
   const where = columns
     .map((col) => `instr(${TEMP_TABLE_MATCH_LINES_COL}, ${col}) > 0`)
     .join(' OR ');
-  sql += `SELECT T.* FROM ${table} AS T CROSS JOIN ${TEMP_TABLE_MATCH_LINES} WHERE ${where} COLLATE NOCASE;`;
+  sql += `SELECT DISTINCT T.* FROM ${table} AS T CROSS JOIN ${TEMP_TABLE_MATCH_LINES} WHERE ${where} COLLATE NOCASE;`;
 
   return handleExecSQL({
     ...request,

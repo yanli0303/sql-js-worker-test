@@ -18,6 +18,7 @@ const actionHandlers = {
 };
 
 self.addEventListener('message', ({ data }) => {
+  const begin = Date.now();
   const { action, id } = data;
   if (typeof action !== 'string' || !action) {
     self.postMessage({ action, id, error: 'INVALID_ACTION' });
@@ -30,11 +31,20 @@ self.addEventListener('message', ({ data }) => {
     return;
   }
 
+  const returnValue = { action, id, begin };
   handler(data, state)
     .then((result) => {
-      self.postMessage({ action, id, result });
+      self.postMessage({
+        ...returnValue,
+        duration: Date.now() - begin,
+        result,
+      });
     })
     .catch((error) => {
-      self.postMessage({ action, id, error: error.toString() });
+      self.postMessage({
+        ...returnValue,
+        duration: Date.now() - begin,
+        error: error.toString(),
+      });
     });
 });

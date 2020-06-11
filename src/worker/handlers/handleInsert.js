@@ -6,18 +6,17 @@ import {
   INDEXED_DB_TIMEOUT,
 } from './handleOpen';
 
-const eliminateInvisibleChars = (objects, keys) => {
-  objects.forEach((obj) => {
-    keys.forEach((key) => {
-      const value = obj[key];
-      if (typeof value === 'string') {
-        obj[key] = normalizeString(value);
-      }
-    });
+const eliminateInvisibleChars = (objects, keys) => objects.map((obj) => {
+  const newObject = {};
+  keys.forEach((key) => {
+    const value = obj[key];
+    newObject[`:${key}`] = typeof value === 'string' ? normalizeString(value) : value;
   });
-};
+  return newObject;
+});
 
 export const handleInsert = async (request, globals) => {
+  const begin = Date.now();
   // The objects in rows must share same fields
   const { table, rows } = request;
   if (!Array.isArray(rows) || rows.length === 0) {
@@ -25,7 +24,7 @@ export const handleInsert = async (request, globals) => {
   }
 
   const keys = Object.keys(rows[0]);
-  eliminateInvisibleChars(rows, keys);
+  const params = eliminateInvisibleChars(rows, keys);
 
   // Not all field names are valid column names
   // const columns = fields.map(it => it.replace(/\W/g, '_'));
@@ -34,11 +33,14 @@ export const handleInsert = async (request, globals) => {
   const values = keys.map((it) => `:${it}`).join(',');
   const sql = `INSERT INTO ${table} (${columns}) VALUES (${values});`;
   const { sqlite } = globals;
+  console.log(`Insertion SQL: ${sql}`);
 
-  rows.forEach((row, index) => {
+  let tenThousandBegin = Date.now();
+  params.forEach((row, index) => {
     sqlite.run(sql, row);
     if (index > 0 && index % 1000 === 0) {
-      console.log('Inserted 1000 rows.');
+      console.log(`Inserted 1000 rows, took ${Date.now() - tenThousandBegin} ms, row #${index} is`, row);
+      tenThousandBegin = Date.now();
     }
   });
 
@@ -50,5 +52,5 @@ export const handleInsert = async (request, globals) => {
     INDEXED_DB_TIMEOUT,
   );
 
-  return `Inserted ${rows.length} rows.`;
+  return `Inserted ${rows.length} rows, took ${Date.now() - begin} ms.`;
 };

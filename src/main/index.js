@@ -2,6 +2,7 @@ import { createWorker } from './createWorker';
 import { init as initExecSQL } from './tabs/execSQL';
 import { init as initOpen } from './tabs/open';
 import { init as initInsert } from './tabs/insert';
+import { init as initMatch } from './tabs/match';
 
 const errorDiv = () => document.getElementById('error');
 const outputDiv = () => document.getElementById('output');
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initExecSQL(worker, showError);
   initOpen(worker, showError);
   initInsert(worker, showError);
+  initMatch(worker, showError);
 });
 
 document

@@ -8,7 +8,7 @@ const columns = 'SN,NAME,COMPANY,MANGER,OWNER,COUNTRY,BUDGET,PROFIT'
 
 const SQL_SCRIPTS = {
   'create-table': `CREATE TABLE one_million (\n  id INTEGER PRIMARY KEY,${columns}\n);`,
-  'select-star': 'SELECT * FROM one_million;',
+  'select-star': 'SELECT * FROM one_million LIMIT 5;',
   'select-count': 'SELECT COUNT(id) FROM one_million;',
 };
 
