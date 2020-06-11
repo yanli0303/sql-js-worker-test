@@ -10,6 +10,8 @@ export const init = (worker, showError) => {
   document
     .getElementById('btn-open')
     .addEventListener('click', (event) => {
+      console.log(`Opening database, isIE = ${parseForm().isIE}`);
+
       sendRequest(
         worker,
         parseForm,
