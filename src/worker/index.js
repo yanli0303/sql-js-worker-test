@@ -41,6 +41,7 @@ self.addEventListener('message', ({ data }) => {
       });
     })
     .catch((error) => {
+      console.log(error);
       self.postMessage({
         ...returnValue,
         duration: Date.now() - begin,

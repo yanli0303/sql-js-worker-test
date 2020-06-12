@@ -1,6 +1,11 @@
 import { OBJECT_STORE, openIndexedDB } from './openIndexedDB';
 
-export const saveToIndexedDB = (
+// The Chrome IndexedDB is based on LevelDB, which
+// has a max size of 133,169,152:
+// The serialized keys and/or value are too large (size=133341224 bytes, max=133169152 bytes).
+const MAX_OBJECT_LENGTH = Math.floor(133169152 * 0.95);
+
+const saveObjectToIndexedDB = (
   dbName,
   key,
   value,
@@ -29,7 +34,7 @@ export const saveToIndexedDB = (
     ));
   }, timeout);
 
-  console.log(`Saving data to IndexedDB ${dbName}.`);
+  console.log(`Saving ${value.length} bytes as #${key} to IndexedDB ${dbName}.`);
   openIndexedDB(dbName)
     .then((result) => {
       db = result;
@@ -41,3 +46,28 @@ export const saveToIndexedDB = (
     })
     .catch(handleError);
 });
+
+export const saveToIndexedDB = async (
+  dbName,
+  value, // must be Uint8Array
+  timeout,
+) => {
+  const size = value.length;
+  console.log(`Saving ${size} bytes into IndexedDB...`);
+
+  if (size < MAX_OBJECT_LENGTH) {
+    await saveObjectToIndexedDB(dbName, 1, value, timeout);
+    return;
+  }
+
+  let offset = 0;
+  for (let pageNumber = 1; offset < size; pageNumber += 1) {
+    const end = Math.min(offset + MAX_OBJECT_LENGTH, size);
+    const object = value.subarray(offset, end);
+
+    // eslint-disable-next-line no-await-in-loop
+    await saveObjectToIndexedDB(dbName, pageNumber, object, timeout);
+    console.log(`Saved ${end - offset} bytes as #${pageNumber} to IndexedDB.`);
+    offset += MAX_OBJECT_LENGTH;
+  }
+};

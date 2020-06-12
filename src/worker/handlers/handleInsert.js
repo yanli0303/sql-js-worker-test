@@ -2,7 +2,6 @@ import { normalizeString } from '../lib/normalizeString';
 import { saveToIndexedDB } from '../lib/saveToIndexedDB';
 import {
   INDEXED_DB_NAME,
-  DOCUMENT_KEY,
   INDEXED_DB_TIMEOUT,
 } from './handleOpen';
 
@@ -15,15 +14,7 @@ const eliminateInvisibleChars = (objects, keys) => objects.map((obj) => {
   return newObject;
 });
 
-const persistToIndexedDB = (sqlite) => saveToIndexedDB(
-  INDEXED_DB_NAME,
-  DOCUMENT_KEY,
-  sqlite.export(),
-  INDEXED_DB_TIMEOUT,
-);
-
-
-const insertRowByRow = async (table, rows, sqlite) => {
+const insertRowByRow = (table, rows, sqlite) => {
   const keys = Object.keys(rows[0]);
   const columns = keys.map((it) => `'${it}'`).join(',');
   const params = eliminateInvisibleChars(rows, keys);
@@ -43,8 +34,6 @@ const insertRowByRow = async (table, rows, sqlite) => {
       tenThousandBegin = Date.now();
     }
   });
-
-  await persistToIndexedDB(sqlite);
 };
 
 const bulkInsert = async (table, rows, sqlite, bulk) => {
@@ -54,8 +43,12 @@ const bulkInsert = async (table, rows, sqlite, bulk) => {
 
   let batch = [];
   let bulkBegin = Date.now();
-  // eslint-disable-next-line
-  for (const row of rows) {
+  const insertBatch = () => {
+    const sql = `${sqlPrefix}\n${batch.join(',\n')};`;
+    sqlite.run(sql);
+  };
+
+  rows.forEach((row) => {
     const values = keys.map((key) => {
       const value = row[key];
       return typeof value === 'string' ? `"${normalizeString(value).replace(/"/g, '""')}"` : `${value}`;
@@ -63,20 +56,15 @@ const bulkInsert = async (table, rows, sqlite, bulk) => {
     batch.push(`(${values.join(',')})`);
 
     if (batch.length === bulk) {
-      const sql = `${sqlPrefix}\n${batch.join(',\n')};`;
-      sqlite.run(sql);
-      // eslint-disable-next-line
-      await persistToIndexedDB(sqlite);
+      insertBatch();
       console.log(`Bulk inserted ${bulk} rows, took ${Date.now() - bulkBegin} ms.`);
       batch = [];
       bulkBegin = Date.now();
     }
-  }
+  });
 
   if (batch.length > 0) {
-    const sql = `${sqlPrefix}\n${batch.join(',\n')};`;
-    sqlite.run(sql);
-    await persistToIndexedDB(sqlite);
+    insertBatch();
   }
 };
 
@@ -94,11 +82,16 @@ export const handleInsert = async (request, globals) => {
   }
 
   if (!bulk || bulk <= 1) {
-    await insertRowByRow(table, rows, sqlite);
+    insertRowByRow(table, rows, sqlite);
   } else {
     await bulkInsert(table, rows, sqlite, bulk);
   }
 
-
+  const buffer = sqlite.export();
+  await saveToIndexedDB(
+    INDEXED_DB_NAME,
+    buffer,
+    INDEXED_DB_TIMEOUT,
+  );
   return `Inserted ${request.rows.length} rows, took ${Date.now() - begin} ms.`;
 };

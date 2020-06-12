@@ -68,6 +68,7 @@ export const init = (worker, showError) => {
 
   document.getElementById('btn-insert')
     .addEventListener('click', (event) => {
+      event.target.style.display = 'none';
       sendRequest(
         worker,
         parseForm(),

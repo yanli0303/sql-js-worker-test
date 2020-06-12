@@ -29,6 +29,7 @@ const parseForm = () => ({
   action: 'exec',
   id: Date.now() + Math.random(),
   sql: editor ? editor.getValue() : '',
+  readonly: !document.getElementById('check-exec-sql-readonly').checked,
 });
 
 export const init = (worker, showError) => {

@@ -13,7 +13,7 @@
   "scripts": {
     "lint": "eslint src",
     "prebuild": "eslint src --fix",
-    "watch": "webpack --watch --progress",
+    "watch": "webpack --watch --mode production",
     "build": "webpack --mode production",
     "transpile": "babel src/ -d dist/ --copy-files --source-maps --ignore '**/*.test.js' --delete-dir-on-start",
     "postbuild": "node scripts/postbuild.js",

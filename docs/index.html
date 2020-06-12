@@ -22,7 +22,7 @@
     </p>
     <p>Remember to open DevTools and monitor the console messages.</p>
 </header>
-<div class="container">
+<div class="container card-panel">
   <div class="row">
     <ul class="tabs">
       <li class="tab col s3"><a class="active" href="#action-open">OPEN</a></li>
@@ -45,9 +45,16 @@
     <tab class="col s12" id="action-exec-sql">
       <p class="center-align">Enter SQL below and execute</p>
       <textarea id="txt-exec-sql" placeholder="Enter SQL here..."></textarea>
+      <div class="center-align">
+        <label>
+          <input type="checkbox" id="check-exec-sql-readonly" />
+          <span>Will the SQL write any data?</span>
+        </label>
+      </div>
       <footer>
-        <a class="dropdown-trigger btn" href='#'
-          data-target='ddl-select-sql'>SELECT SQL</a>
+        <button class="dropdown-trigger btn" data-target='ddl-select-sql'>SELECT
+          SQL<i class="material-icons right">keyboard_arrow_right</i>
+        </button>
         <ul id="ddl-select-sql" class="dropdown-content">
           <li><a href="#!" data-type="create-table">CREATE TABLE</a></li>
           <li><a href="#!" data-type="create-table-index">CREATE TABLE WITH
@@ -78,8 +85,6 @@
             <option title="1000 rows at a time" value="1000">1K</option>
             <option title="10000 rows at a time" value="10000" selected>10K
             </option>
-            <option title="50000 rows at a time" value="50000">50K</option>
-            <option title="100000 rows at a time" value="100000">100K</option>
           </select>
           <label>Bulk insert size</label>
         </div>

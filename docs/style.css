@@ -4,6 +4,7 @@ header {
 
 footer {
   text-align: center;
+  margin-top: 2em;
 }
 
 .CodeMirror {
@@ -21,4 +22,9 @@ textarea {
 .input-field {
   display: inline-block;
   margin-right: 1em;
+}
+
+.card-panel {
+  margin-left: auto;
+  margin-right: auto;
 }
