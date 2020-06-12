@@ -64,12 +64,27 @@
       <p class="center-align">Insert into SQLite database</p>
       <textarea disabled id='ta-insert-demo'></textarea>
       <footer>
+        <div class="input-field">
+          <select id="select-insert-count">
+            <option value="10000" selected>10K</option>
+            <option value="100000">100K</option>
+            <option value="1000000">1M</option>
+          </select>
+          <label>Rows to insert</label>
+        </div>
+        <div class="input-field">
+          <select id="select-insert-bulk">
+            <option title="1 row at a time" value="1">1</option>
+            <option title="1000 rows at a time" value="1000">1K</option>
+            <option title="10000 rows at a time" value="10000" selected>10K
+            </option>
+            <option title="50000 rows at a time" value="50000">50K</option>
+            <option title="100000 rows at a time" value="100000">100K</option>
+          </select>
+          <label>Bulk insert size</label>
+        </div>
         <button class="waves-effect waves-light btn orange"
-          id="btn-insert-10">INSERT
-          10K</button>
-        <button class="waves-effect waves-light btn red"
-          id="btn-insert-100">INSERT
-          100K</button>
+          id="btn-insert">INSERT</button>
       </footer>
     </tab>
     <tab class="col s12" id="action-match">

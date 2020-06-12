@@ -36,7 +36,7 @@ export const loadFromIndexedDB = (
       const store = tran.objectStore(OBJECT_STORE);
       const getRequest = store.get(key);
       getRequest.onsuccess = (event) => handleResult(event.target.result);
-      getRequest.onerror = handleError;
+      getRequest.onerror = (event) => handleError(event.target.error);
     })
     .catch(handleError);
 });

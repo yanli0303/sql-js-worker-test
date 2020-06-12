@@ -15,24 +15,24 @@ const eliminateInvisibleChars = (objects, keys) => objects.map((obj) => {
   return newObject;
 });
 
-export const handleInsert = async (request, globals) => {
-  const begin = Date.now();
-  // The objects in rows must share same fields
-  const { table, rows } = request;
-  if (!Array.isArray(rows) || rows.length === 0) {
-    throw new Error('"rows" must be non-empty array.');
-  }
+const persistToIndexedDB = (sqlite) => saveToIndexedDB(
+  INDEXED_DB_NAME,
+  DOCUMENT_KEY,
+  sqlite.export(),
+  INDEXED_DB_TIMEOUT,
+);
 
+
+const insertRowByRow = async (table, rows, sqlite) => {
   const keys = Object.keys(rows[0]);
+  const columns = keys.map((it) => `'${it}'`).join(',');
   const params = eliminateInvisibleChars(rows, keys);
 
   // Not all field names are valid column names
   // const columns = fields.map(it => it.replace(/\W/g, '_'));
 
-  const columns = keys.map((it) => `'${it}'`).join(',');
   const values = keys.map((it) => `:${it}`).join(',');
   const sql = `INSERT INTO ${table} (${columns}) VALUES (${values});`;
-  const { sqlite } = globals;
   console.log(`Insertion SQL: ${sql}`);
 
   let tenThousandBegin = Date.now();
@@ -44,13 +44,61 @@ export const handleInsert = async (request, globals) => {
     }
   });
 
-  const buffer = sqlite.export();
-  await saveToIndexedDB(
-    INDEXED_DB_NAME,
-    DOCUMENT_KEY,
-    buffer,
-    INDEXED_DB_TIMEOUT,
-  );
+  await persistToIndexedDB(sqlite);
+};
 
-  return `Inserted ${rows.length} rows, took ${Date.now() - begin} ms.`;
+const bulkInsert = async (table, rows, sqlite, bulk) => {
+  const keys = Object.keys(rows[0]);
+  const columns = keys.map((it) => `'${it}'`).join(',');
+  const sqlPrefix = `INSERT INTO ${table} (${columns}) VALUES\n`;
+
+  let batch = [];
+  let bulkBegin = Date.now();
+  // eslint-disable-next-line
+  for (const row of rows) {
+    const values = keys.map((key) => {
+      const value = row[key];
+      return typeof value === 'string' ? `"${normalizeString(value).replace(/"/g, '""')}"` : `${value}`;
+    });
+    batch.push(`(${values.join(',')})`);
+
+    if (batch.length === bulk) {
+      const sql = `${sqlPrefix}\n${batch.join(',\n')};`;
+      sqlite.run(sql);
+      // eslint-disable-next-line
+      await persistToIndexedDB(sqlite);
+      console.log(`Bulk inserted ${bulk} rows, took ${Date.now() - bulkBegin} ms.`);
+      batch = [];
+      bulkBegin = Date.now();
+    }
+  }
+
+  if (batch.length > 0) {
+    const sql = `${sqlPrefix}\n${batch.join(',\n')};`;
+    sqlite.run(sql);
+    await persistToIndexedDB(sqlite);
+  }
+};
+
+export const handleInsert = async (request, globals) => {
+  const begin = Date.now();
+  const { sqlite } = globals;
+  if (!sqlite) {
+    throw new Error('Database is not open.');
+  }
+
+  // The objects in rows must share same fields
+  const { table, rows, bulk } = request;
+  if (!Array.isArray(rows) || rows.length === 0) {
+    throw new Error('"rows" must be non-empty array.');
+  }
+
+  if (!bulk || bulk <= 1) {
+    await insertRowByRow(table, rows, sqlite);
+  } else {
+    await bulkInsert(table, rows, sqlite, bulk);
+  }
+
+
+  return `Inserted ${request.rows.length} rows, took ${Date.now() - begin} ms.`;
 };

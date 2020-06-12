@@ -28,6 +28,6 @@ export const openIndexedDB = (dbName) => new Promise((resolve, reject) => {
     }
   };
 
-  openRequest.onerror = reject;
+  openRequest.onerror = (event) => reject(event.target.error);
   openRequest.onupgradeneeded = handleUpgradeEvent;
 });

@@ -15,11 +15,11 @@ export const saveToIndexedDB = (
     reject(error);
   };
 
-  const handleResult = (result) => {
+  const handleResult = () => {
     console.log(`Data saved to IndexedDB ${dbName}.`);
     if (timeoutId) clearTimeout(timeoutId);
     if (db) db.close();
-    resolve(result);
+    resolve();
   };
 
   timeoutId = setTimeout(() => {
@@ -37,7 +37,7 @@ export const saveToIndexedDB = (
       const store = tran.objectStore(OBJECT_STORE);
       const putRequest = store.put(value, key);
       putRequest.onsuccess = handleResult;
-      putRequest.onerror = handleError;
+      putRequest.onerror = (event) => handleError(event.target.error);
     })
     .catch(handleError);
 });

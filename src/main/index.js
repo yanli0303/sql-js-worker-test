@@ -10,8 +10,8 @@ const outputDiv = () => document.getElementById('output');
 
 const worker = createWorker();
 
-const showError = (message) => {
-  errorDiv().innerText = message.toString();
+const showError = (error) => {
+  errorDiv().innerText = error instanceof Error ? error.message : error.toString();
 };
 
 const clearOutput = () => {
@@ -37,11 +37,17 @@ document.addEventListener('DOMContentLoaded', () => {
   initMatch(worker, showError);
   initClear(worker, showError);
 
-  const elements = document.querySelectorAll('.tabs');
-  M.Tabs.init(elements);
+  M.Tabs.init(document.querySelectorAll('.tabs'));
 
-  const ddl = document.querySelectorAll('.dropdown-trigger');
-  M.Dropdown.init(ddl, { constrainWidth: false, coverTrigger: false });
+  M.Dropdown.init(
+    document.querySelectorAll('.dropdown-trigger'),
+    { constrainWidth: false, coverTrigger: false },
+  );
+
+  M.FormSelect.init(
+    document.querySelectorAll('select'),
+    { dropdownOptions: { coverTrigger: false } },
+  );
 });
 
 document

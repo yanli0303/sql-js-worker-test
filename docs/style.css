@@ -17,3 +17,8 @@ textarea {
   padding: 0.35em 0.5em;
   min-height: 12em;
 }
+
+.input-field {
+  display: inline-block;
+  margin-right: 1em;
+}
