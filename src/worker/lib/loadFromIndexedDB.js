@@ -29,29 +29,31 @@ const getAll = (dbName, timeout) => new Promise((resolve, reject) => {
   openIndexedDB(dbName)
     .then((result) => {
       db = result;
-      const tran = db.transaction(OBJECT_STORE, 'readonly');
-      const store = tran.objectStore(OBJECT_STORE);
-      const getAllRequest = store.getAll();
+      const getAllRequest = db
+        .transaction(OBJECT_STORE, 'readonly')
+        .objectStore(OBJECT_STORE)
+        .getAll();
+
       getAllRequest.onsuccess = (event) => handleResult(event.target.result);
       getAllRequest.onerror = (event) => handleError(event.target.error);
     })
     .catch(handleError);
 });
 
-export const loadFromIndexedDB = async (dbName, timeout) => {
-  const items = await getAll(dbName, timeout);
-  if (!items || items.length === 0) {
-    return null;
-  }
+export const loadFromIndexedDB = (dbName, timeout) => getAll(dbName, timeout)
+  .then((items) => {
+    if (!items || items.length === 0) {
+      return null;
+    }
 
-  console.log(items, items[0]);
-  const total = items.reduce((sum, item) => sum + item.length, 0);
-  const data = new Uint8Array(total);
-  let copied = 0;
-  while (copied < total) {
-    const item = items.shift();
-    data.set(item, copied);
-    copied += item.length;
-  }
-  return data;
-};
+    console.log(items, items[0]);
+    const total = items.reduce((sum, item) => sum + item.length, 0);
+    const data = new Uint8Array(total);
+    let copied = 0;
+    while (copied < total) {
+      const item = items.shift();
+      data.set(item, copied);
+      copied += item.length;
+    }
+    return data;
+  });
