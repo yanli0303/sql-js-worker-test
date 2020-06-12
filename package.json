@@ -30,6 +30,7 @@
     "@babel/plugin-transform-runtime": "^7.10.1",
     "@babel/preset-env": "^7.10.2",
     "babel-loader": "^8.1.0",
+    "core-js": "^3.6.5",
     "eslint": "^7.x",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.21.2",
