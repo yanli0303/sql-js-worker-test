@@ -15,6 +15,6 @@
    - Check the `Will the SQL write any data?`;
    - Click the `EXEC SQL` button.
 3. Switch to `INSERT` tab, select the number of rows to insert, then click the `INSERT` button.
-   > The might not responsive for a few seconds while it generates random strings and numbers to insert.
+   > The page might freeze for a few seconds while it generates random strings and numbers to insert.
 4. To verify the insertion, go back to `EXEC SQL` tab, choose `SELECT COUNT(*)` in `SELECT SQL` and click the `EXEC SQL` button to get the number of rows in the table.
 5. Go to `MATCH` tab, enter random numbers or texts, hit either of the two match buttons.
