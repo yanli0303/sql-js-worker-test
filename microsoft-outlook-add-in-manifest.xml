@@ -5,11 +5,8 @@
   xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
   xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
   xsi:type="MailApp">
-
-
   <Id>2362c128-184d-50b7-9946-15922a0a01ae</Id>
-
-  <Version>11.2.1.9999</Version>
+  <Version>1.0</Version>
   <ProviderName>GitHub Inc.</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="sql.js test">
@@ -27,29 +24,24 @@
     <Override Locale="nl-nl" Value="sql.js test" />
     <Override Locale="pl-pl" Value="sql.js test" />
   </DisplayName>
-  <Description DefaultValue="Opens a pane displaying the smart world in GitHub sql.js test.">
-    <Override Locale="de-de" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-    <Override Locale="ko-kr" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-    <Override Locale="es-es" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-    <Override Locale="fr-fr" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-    <Override Locale="it-it" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-    <Override Locale="sv-se" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-    <Override Locale="ja-jp" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-    <Override Locale="pt-pt" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-    <Override Locale="zh-cn" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-    <Override Locale="zh-tw" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-    <Override Locale="da-dk" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-    <Override Locale="nl-nl" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-    <Override Locale="pl-pl" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+  <Description DefaultValue="sql.js tests with IndexedDB as storage and Worker.">
+    <Override Locale="de-de" Value="sql.js tests with IndexedDB as storage and Worker." />
+    <Override Locale="ko-kr" Value="sql.js tests with IndexedDB as storage and Worker." />
+    <Override Locale="es-es" Value="sql.js tests with IndexedDB as storage and Worker." />
+    <Override Locale="fr-fr" Value="sql.js tests with IndexedDB as storage and Worker." />
+    <Override Locale="it-it" Value="sql.js tests with IndexedDB as storage and Worker." />
+    <Override Locale="sv-se" Value="sql.js tests with IndexedDB as storage and Worker." />
+    <Override Locale="ja-jp" Value="sql.js tests with IndexedDB as storage and Worker." />
+    <Override Locale="pt-pt" Value="sql.js tests with IndexedDB as storage and Worker." />
+    <Override Locale="zh-cn" Value="sql.js tests with IndexedDB as storage and Worker." />
+    <Override Locale="zh-tw" Value="sql.js tests with IndexedDB as storage and Worker." />
+    <Override Locale="da-dk" Value="sql.js tests with IndexedDB as storage and Worker." />
+    <Override Locale="nl-nl" Value="sql.js tests with IndexedDB as storage and Worker." />
+    <Override Locale="pl-pl" Value="sql.js tests with IndexedDB as storage and Worker." />
   </Description>
-
-  <IconUrl DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo-64.png" />
-  <HighResolutionIconUrl DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo-128.png"/>
-
-  <SupportUrl DefaultValue="https://www.microstrategy.com/support" />
-
-  
-
+  <IconUrl DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo.png" />
+  <HighResolutionIconUrl DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo.png"/>
+  <SupportUrl DefaultValue="https://github.com/yanli0303/sql-js-worker-test/issues" />
   <Hosts>
     <Host Name="Mailbox" />
   </Hosts>
@@ -136,9 +128,9 @@
 
     <Resources>
       <bt:Images>
-        <bt:Image id="logo16" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo-16.png"/>
-        <bt:Image id="logo32" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo-32.png"/>
-        <bt:Image id="logo80" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo-80.png"/>
+        <bt:Image id="logo16" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo.png"/>
+        <bt:Image id="logo32" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo.png"/>
+        <bt:Image id="logo80" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo.png"/>
       </bt:Images>
       <bt:Urls>
         <bt:Url id="homePageUrl" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/index.html"/>
@@ -191,20 +183,20 @@
         </bt:String>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="openTaskPaneButtonTooltipDesc" DefaultValue="Opens a pane displaying the smart world in GitHub sql.js test.">
-          <bt:Override Locale="de-de" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-          <bt:Override Locale="ko-kr" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-          <bt:Override Locale="es-es" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-          <bt:Override Locale="fr-fr" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-          <bt:Override Locale="it-it" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-          <bt:Override Locale="sv-se" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-          <bt:Override Locale="ja-jp" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-          <bt:Override Locale="pt-pt" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-          <bt:Override Locale="zh-cn" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-          <bt:Override Locale="zh-tw" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-          <bt:Override Locale="da-dk" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-          <bt:Override Locale="nl-nl" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-          <bt:Override Locale="pl-pl" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+        <bt:String id="openTaskPaneButtonTooltipDesc" DefaultValue="sql.js tests with IndexedDB as storage and Worker.">
+          <bt:Override Locale="de-de" Value="sql.js tests with IndexedDB as storage and Worker." />
+          <bt:Override Locale="ko-kr" Value="sql.js tests with IndexedDB as storage and Worker." />
+          <bt:Override Locale="es-es" Value="sql.js tests with IndexedDB as storage and Worker." />
+          <bt:Override Locale="fr-fr" Value="sql.js tests with IndexedDB as storage and Worker." />
+          <bt:Override Locale="it-it" Value="sql.js tests with IndexedDB as storage and Worker." />
+          <bt:Override Locale="sv-se" Value="sql.js tests with IndexedDB as storage and Worker." />
+          <bt:Override Locale="ja-jp" Value="sql.js tests with IndexedDB as storage and Worker." />
+          <bt:Override Locale="pt-pt" Value="sql.js tests with IndexedDB as storage and Worker." />
+          <bt:Override Locale="zh-cn" Value="sql.js tests with IndexedDB as storage and Worker." />
+          <bt:Override Locale="zh-tw" Value="sql.js tests with IndexedDB as storage and Worker." />
+          <bt:Override Locale="da-dk" Value="sql.js tests with IndexedDB as storage and Worker." />
+          <bt:Override Locale="nl-nl" Value="sql.js tests with IndexedDB as storage and Worker." />
+          <bt:Override Locale="pl-pl" Value="sql.js tests with IndexedDB as storage and Worker." />
         </bt:String>
       </bt:LongStrings>
     </Resources>
@@ -274,9 +266,9 @@
 
       <Resources>
         <bt:Images>
-          <bt:Image id="logo16" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo-16.png"/>
-          <bt:Image id="logo32" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo-32.png"/>
-          <bt:Image id="logo80" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo-80.png"/>
+          <bt:Image id="logo16" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo.png"/>
+          <bt:Image id="logo32" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo.png"/>
+          <bt:Image id="logo80" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo.png"/>
         </bt:Images>
         <bt:Urls>
           <bt:Url id="homePageUrl" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/index.html"/>
@@ -329,20 +321,20 @@
           </bt:String>
         </bt:ShortStrings>
         <bt:LongStrings>
-          <bt:String id="openTaskPaneButtonTooltipDesc" DefaultValue="Opens a pane displaying the smart world in GitHub sql.js test.">
-            <bt:Override Locale="de-de" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-            <bt:Override Locale="ko-kr" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-            <bt:Override Locale="es-es" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-            <bt:Override Locale="fr-fr" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-            <bt:Override Locale="it-it" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-            <bt:Override Locale="sv-se" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-            <bt:Override Locale="ja-jp" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-            <bt:Override Locale="pt-pt" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-            <bt:Override Locale="zh-cn" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-            <bt:Override Locale="zh-tw" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-            <bt:Override Locale="da-dk" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-            <bt:Override Locale="nl-nl" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
-            <bt:Override Locale="pl-pl" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+          <bt:String id="openTaskPaneButtonTooltipDesc" DefaultValue="sql.js tests with IndexedDB as storage and Worker.">
+            <bt:Override Locale="de-de" Value="sql.js tests with IndexedDB as storage and Worker." />
+            <bt:Override Locale="ko-kr" Value="sql.js tests with IndexedDB as storage and Worker." />
+            <bt:Override Locale="es-es" Value="sql.js tests with IndexedDB as storage and Worker." />
+            <bt:Override Locale="fr-fr" Value="sql.js tests with IndexedDB as storage and Worker." />
+            <bt:Override Locale="it-it" Value="sql.js tests with IndexedDB as storage and Worker." />
+            <bt:Override Locale="sv-se" Value="sql.js tests with IndexedDB as storage and Worker." />
+            <bt:Override Locale="ja-jp" Value="sql.js tests with IndexedDB as storage and Worker." />
+            <bt:Override Locale="pt-pt" Value="sql.js tests with IndexedDB as storage and Worker." />
+            <bt:Override Locale="zh-cn" Value="sql.js tests with IndexedDB as storage and Worker." />
+            <bt:Override Locale="zh-tw" Value="sql.js tests with IndexedDB as storage and Worker." />
+            <bt:Override Locale="da-dk" Value="sql.js tests with IndexedDB as storage and Worker." />
+            <bt:Override Locale="nl-nl" Value="sql.js tests with IndexedDB as storage and Worker." />
+            <bt:Override Locale="pl-pl" Value="sql.js tests with IndexedDB as storage and Worker." />
           </bt:String>
         </bt:LongStrings>
       </Resources>
