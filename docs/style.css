@@ -7,7 +7,7 @@ footer {
   margin-top: 2em;
 }
 
-footer.busy button {
+.busy button {
   display: none;
 }
 

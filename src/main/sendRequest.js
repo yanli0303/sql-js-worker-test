@@ -14,7 +14,7 @@ const showProgress = (button) => {
 
 const hideProgress = (progress) => {
   const parent = progress.parentElement;
-  parent.className = parent.className.replace(/\sbusy$/, '');
+  parent.className = parent.className.replace(/\s?busy/g, '');
   parent.removeChild(progress);
 };
 

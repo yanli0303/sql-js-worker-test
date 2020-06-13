@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
+  xsi:type="MailApp">
+
+
+  <Id>2362c128-184d-50b7-9946-15922a0a01ae</Id>
+
+  <Version>11.2.1.9999</Version>
+  <ProviderName>GitHub Inc.</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="sql.js test">
+    <Override Locale="de-de" Value="sql.js test" />
+    <Override Locale="ko-kr" Value="sql.js test" />
+    <Override Locale="es-es" Value="sql.js test" />
+    <Override Locale="fr-fr" Value="sql.js test" />
+    <Override Locale="it-it" Value="sql.js test" />
+    <Override Locale="sv-se" Value="sql.js test" />
+    <Override Locale="ja-jp" Value="sql.js test" />
+    <Override Locale="pt-pt" Value="sql.js test" />
+    <Override Locale="zh-cn" Value="sql.js test" />
+    <Override Locale="zh-tw" Value="sql.js test" />
+    <Override Locale="da-dk" Value="sql.js test" />
+    <Override Locale="nl-nl" Value="sql.js test" />
+    <Override Locale="pl-pl" Value="sql.js test" />
+  </DisplayName>
+  <Description DefaultValue="Opens a pane displaying the smart world in GitHub sql.js test.">
+    <Override Locale="de-de" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+    <Override Locale="ko-kr" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+    <Override Locale="es-es" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+    <Override Locale="fr-fr" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+    <Override Locale="it-it" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+    <Override Locale="sv-se" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+    <Override Locale="ja-jp" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+    <Override Locale="pt-pt" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+    <Override Locale="zh-cn" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+    <Override Locale="zh-tw" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+    <Override Locale="da-dk" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+    <Override Locale="nl-nl" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+    <Override Locale="pl-pl" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+  </Description>
+
+  <IconUrl DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo-64.png" />
+  <HighResolutionIconUrl DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo-128.png"/>
+
+  <SupportUrl DefaultValue="https://www.microstrategy.com/support" />
+
+  
+
+  <Hosts>
+    <Host Name="Mailbox" />
+  </Hosts>
+  <Requirements>
+    <Sets>
+      <Set Name="Mailbox" MinVersion="1.1" />
+    </Sets>
+  </Requirements>
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://yanli0303.github.io/sql-js-worker-test/index.html"/>
+        <RequestedHeight>250</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+
+  <Permissions>ReadWriteMailbox</Permissions>
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
+    <Rule xsi:type="ItemIs" ItemType="Appointment" FormType="Read" />
+  </Rule>
+  <DisableEntityHighlighting>false</DisableEntityHighlighting>
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Requirements>
+      <bt:Sets DefaultMinVersion="1.3">
+        <bt:Set Name="Mailbox" />
+      </bt:Sets>
+    </Requirements>
+    <Hosts>
+      <Host xsi:type="MailHost">
+        <DesktopFormFactor>
+          <FunctionFile resid="homePageUrl" />
+          <ExtensionPoint xsi:type="MessageReadCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="ribbonGroupRead">
+                <Label resid="ribbonGroupLabel" />
+                <Control xsi:type="Button" id="openTaskPaneButtonRead">
+                  <Label resid="openTaskPaneButtonLabel" />
+                  <Tooltip resid="openTaskPaneButtonTooltipDesc" />
+                  <Supertip>
+                    <Title resid="openTaskPaneButtonTooltipTitle" />
+                    <Description resid="openTaskPaneButtonTooltipDesc" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="logo16" />
+                    <bt:Image size="32" resid="logo32" />
+                    <bt:Image size="80" resid="logo80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="homePageUrl" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+          <ExtensionPoint xsi:type="AppointmentAttendeeCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="ribbonGroupMeetingRead">
+                <Label resid="ribbonGroupLabel" />
+                <Control xsi:type="Button" id="openTaskPaneButtonMeetingRead">
+                  <Label resid="openTaskPaneButtonLabel" />
+                  <Tooltip resid="openTaskPaneButtonTooltipDesc" />
+                  <Supertip>
+                    <Title resid="openTaskPaneButtonTooltipTitle" />
+                    <Description resid="openTaskPaneButtonTooltipDesc" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="logo16" />
+                    <bt:Image size="32" resid="logo32" />
+                    <bt:Image size="80" resid="logo80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="homePageUrl" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <Resources>
+      <bt:Images>
+        <bt:Image id="logo16" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo-16.png"/>
+        <bt:Image id="logo32" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo-32.png"/>
+        <bt:Image id="logo80" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="homePageUrl" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/index.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="ribbonGroupLabel" DefaultValue="GitHub">
+          <bt:Override Locale="de-de" Value="GitHub" />
+          <bt:Override Locale="ko-kr" Value="GitHub" />
+          <bt:Override Locale="es-es" Value="GitHub" />
+          <bt:Override Locale="fr-fr" Value="GitHub" />
+          <bt:Override Locale="it-it" Value="GitHub" />
+          <bt:Override Locale="sv-se" Value="GitHub" />
+          <bt:Override Locale="ja-jp" Value="GitHub" />
+          <bt:Override Locale="pt-pt" Value="GitHub" />
+          <bt:Override Locale="zh-cn" Value="GitHub" />
+          <bt:Override Locale="zh-tw" Value="GitHub" />
+          <bt:Override Locale="da-dk" Value="GitHub" />
+          <bt:Override Locale="nl-nl" Value="GitHub" />
+          <bt:Override Locale="pl-pl" Value="GitHub" />
+        </bt:String>
+        <bt:String id="openTaskPaneButtonLabel" DefaultValue="sql.js test">
+          <bt:Override Locale="de-de" Value="sql.js test" />
+          <bt:Override Locale="ko-kr" Value="sql.js test" />
+          <bt:Override Locale="es-es" Value="sql.js test" />
+          <bt:Override Locale="fr-fr" Value="sql.js test" />
+          <bt:Override Locale="it-it" Value="sql.js test" />
+          <bt:Override Locale="sv-se" Value="sql.js test" />
+          <bt:Override Locale="ja-jp" Value="sql.js test" />
+          <bt:Override Locale="pt-pt" Value="sql.js test" />
+          <bt:Override Locale="zh-cn" Value="sql.js test" />
+          <bt:Override Locale="zh-tw" Value="sql.js test" />
+          <bt:Override Locale="da-dk" Value="sql.js test" />
+          <bt:Override Locale="nl-nl" Value="sql.js test" />
+          <bt:Override Locale="pl-pl" Value="sql.js test" />
+        </bt:String>
+        <bt:String id="openTaskPaneButtonTooltipTitle" DefaultValue="sql.js test">
+          <bt:Override Locale="de-de" Value="sql.js test" />
+          <bt:Override Locale="ko-kr" Value="sql.js test" />
+          <bt:Override Locale="es-es" Value="sql.js test" />
+          <bt:Override Locale="fr-fr" Value="sql.js test" />
+          <bt:Override Locale="it-it" Value="sql.js test" />
+          <bt:Override Locale="sv-se" Value="sql.js test" />
+          <bt:Override Locale="ja-jp" Value="sql.js test" />
+          <bt:Override Locale="pt-pt" Value="sql.js test" />
+          <bt:Override Locale="zh-cn" Value="sql.js test" />
+          <bt:Override Locale="zh-tw" Value="sql.js test" />
+          <bt:Override Locale="da-dk" Value="sql.js test" />
+          <bt:Override Locale="nl-nl" Value="sql.js test" />
+          <bt:Override Locale="pl-pl" Value="sql.js test" />
+        </bt:String>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="openTaskPaneButtonTooltipDesc" DefaultValue="Opens a pane displaying the smart world in GitHub sql.js test.">
+          <bt:Override Locale="de-de" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+          <bt:Override Locale="ko-kr" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+          <bt:Override Locale="es-es" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+          <bt:Override Locale="fr-fr" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+          <bt:Override Locale="it-it" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+          <bt:Override Locale="sv-se" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+          <bt:Override Locale="ja-jp" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+          <bt:Override Locale="pt-pt" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+          <bt:Override Locale="zh-cn" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+          <bt:Override Locale="zh-tw" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+          <bt:Override Locale="da-dk" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+          <bt:Override Locale="nl-nl" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+          <bt:Override Locale="pl-pl" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+        </bt:String>
+      </bt:LongStrings>
+    </Resources>
+
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
+      <Requirements>
+        <bt:Sets DefaultMinVersion="1.3">
+          <bt:Set Name="Mailbox" />
+        </bt:Sets>
+      </Requirements>
+      <Hosts>
+        <Host xsi:type="MailHost">
+          <DesktopFormFactor>
+            <SupportsSharedFolders>true</SupportsSharedFolders>
+            <FunctionFile resid="homePageUrl" />
+            <ExtensionPoint xsi:type="MessageReadCommandSurface">
+              <OfficeTab id="TabDefault">
+                <Group id="ribbonGroupRead">
+                  <Label resid="ribbonGroupLabel" />
+                  <Control xsi:type="Button" id="openTaskPaneButtonRead">
+                    <Label resid="openTaskPaneButtonLabel" />
+                    <Tooltip resid="openTaskPaneButtonTooltipDesc" />
+                    <Supertip>
+                      <Title resid="openTaskPaneButtonTooltipTitle" />
+                      <Description resid="openTaskPaneButtonTooltipDesc" />
+                    </Supertip>
+                    <Icon>
+                      <bt:Image size="16" resid="logo16" />
+                      <bt:Image size="32" resid="logo32" />
+                      <bt:Image size="80" resid="logo80" />
+                    </Icon>
+                    <Action xsi:type="ShowTaskpane">
+                      <SourceLocation resid="homePageUrl" />
+                      <SupportsPinning>true</SupportsPinning>
+                    </Action>
+                  </Control>
+                </Group>
+              </OfficeTab>
+            </ExtensionPoint>
+            <ExtensionPoint xsi:type="AppointmentAttendeeCommandSurface">
+              <OfficeTab id="TabDefault">
+                <Group id="ribbonGroupMeetingRead">
+                  <Label resid="ribbonGroupLabel" />
+                  <Control xsi:type="Button" id="openTaskPaneButtonMeetingRead">
+                    <Label resid="openTaskPaneButtonLabel" />
+                    <Tooltip resid="openTaskPaneButtonTooltipDesc" />
+                    <Supertip>
+                      <Title resid="openTaskPaneButtonTooltipTitle" />
+                      <Description resid="openTaskPaneButtonTooltipDesc" />
+                    </Supertip>
+                    <Icon>
+                      <bt:Image size="16" resid="logo16" />
+                      <bt:Image size="32" resid="logo32" />
+                      <bt:Image size="80" resid="logo80" />
+                    </Icon>
+                    <Action xsi:type="ShowTaskpane">
+                      <SourceLocation resid="homePageUrl" />
+                      <SupportsPinning>true</SupportsPinning>
+                    </Action>
+                  </Control>
+                </Group>
+              </OfficeTab>
+            </ExtensionPoint>
+          </DesktopFormFactor>
+        </Host>
+      </Hosts>
+
+      <Resources>
+        <bt:Images>
+          <bt:Image id="logo16" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo-16.png"/>
+          <bt:Image id="logo32" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo-32.png"/>
+          <bt:Image id="logo80" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/logo-80.png"/>
+        </bt:Images>
+        <bt:Urls>
+          <bt:Url id="homePageUrl" DefaultValue="https://yanli0303.github.io/sql-js-worker-test/index.html"/>
+        </bt:Urls>
+        <bt:ShortStrings>
+          <bt:String id="ribbonGroupLabel" DefaultValue="GitHub">
+            <bt:Override Locale="de-de" Value="GitHub" />
+            <bt:Override Locale="ko-kr" Value="GitHub" />
+            <bt:Override Locale="es-es" Value="GitHub" />
+            <bt:Override Locale="fr-fr" Value="GitHub" />
+            <bt:Override Locale="it-it" Value="GitHub" />
+            <bt:Override Locale="sv-se" Value="GitHub" />
+            <bt:Override Locale="ja-jp" Value="GitHub" />
+            <bt:Override Locale="pt-pt" Value="GitHub" />
+            <bt:Override Locale="zh-cn" Value="GitHub" />
+            <bt:Override Locale="zh-tw" Value="GitHub" />
+            <bt:Override Locale="da-dk" Value="GitHub" />
+            <bt:Override Locale="nl-nl" Value="GitHub" />
+            <bt:Override Locale="pl-pl" Value="GitHub" />
+          </bt:String>
+          <bt:String id="openTaskPaneButtonLabel" DefaultValue="sql.js test">
+            <bt:Override Locale="de-de" Value="sql.js test" />
+            <bt:Override Locale="ko-kr" Value="sql.js test" />
+            <bt:Override Locale="es-es" Value="sql.js test" />
+            <bt:Override Locale="fr-fr" Value="sql.js test" />
+            <bt:Override Locale="it-it" Value="sql.js test" />
+            <bt:Override Locale="sv-se" Value="sql.js test" />
+            <bt:Override Locale="ja-jp" Value="sql.js test" />
+            <bt:Override Locale="pt-pt" Value="sql.js test" />
+            <bt:Override Locale="zh-cn" Value="sql.js test" />
+            <bt:Override Locale="zh-tw" Value="sql.js test" />
+            <bt:Override Locale="da-dk" Value="sql.js test" />
+            <bt:Override Locale="nl-nl" Value="sql.js test" />
+            <bt:Override Locale="pl-pl" Value="sql.js test" />
+          </bt:String>
+          <bt:String id="openTaskPaneButtonTooltipTitle" DefaultValue="sql.js test">
+            <bt:Override Locale="de-de" Value="sql.js test" />
+            <bt:Override Locale="ko-kr" Value="sql.js test" />
+            <bt:Override Locale="es-es" Value="sql.js test" />
+            <bt:Override Locale="fr-fr" Value="sql.js test" />
+            <bt:Override Locale="it-it" Value="sql.js test" />
+            <bt:Override Locale="sv-se" Value="sql.js test" />
+            <bt:Override Locale="ja-jp" Value="sql.js test" />
+            <bt:Override Locale="pt-pt" Value="sql.js test" />
+            <bt:Override Locale="zh-cn" Value="sql.js test" />
+            <bt:Override Locale="zh-tw" Value="sql.js test" />
+            <bt:Override Locale="da-dk" Value="sql.js test" />
+            <bt:Override Locale="nl-nl" Value="sql.js test" />
+            <bt:Override Locale="pl-pl" Value="sql.js test" />
+          </bt:String>
+        </bt:ShortStrings>
+        <bt:LongStrings>
+          <bt:String id="openTaskPaneButtonTooltipDesc" DefaultValue="Opens a pane displaying the smart world in GitHub sql.js test.">
+            <bt:Override Locale="de-de" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+            <bt:Override Locale="ko-kr" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+            <bt:Override Locale="es-es" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+            <bt:Override Locale="fr-fr" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+            <bt:Override Locale="it-it" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+            <bt:Override Locale="sv-se" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+            <bt:Override Locale="ja-jp" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+            <bt:Override Locale="pt-pt" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+            <bt:Override Locale="zh-cn" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+            <bt:Override Locale="zh-tw" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+            <bt:Override Locale="da-dk" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+            <bt:Override Locale="nl-nl" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+            <bt:Override Locale="pl-pl" Value="Opens a pane displaying the smart world in GitHub sql.js test." />
+          </bt:String>
+        </bt:LongStrings>
+      </Resources>
+    </VersionOverrides>
+  </VersionOverrides>
+</OfficeApp>
