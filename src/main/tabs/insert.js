@@ -1,8 +1,7 @@
 import { sendRequest } from '../sendRequest';
 import { TABLE_NAME } from './execSQL';
 
-const SQL_INSERT_DEMO = `/* below is an example */
-INSERT INTO one_million (
+const SQL_INSERT_DEMO = `INSERT INTO one_million (
   'sn', 'name', 'company',
   'manger', 'owner', 'country',
   'budget', 'profit'

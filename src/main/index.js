@@ -8,6 +8,7 @@ import { init as initClear } from './tabs/clear';
 
 const errorDiv = () => document.getElementById('error');
 const outputDiv = () => document.getElementById('output');
+const clearOutputButton = () => document.getElementById('clear-output');
 
 const worker = createWorker();
 
@@ -16,12 +17,14 @@ const showError = (error) => {
 };
 
 const clearOutput = () => {
+  clearOutputButton().style.display = 'none';
   outputDiv().innerHTML = '';
 };
 
 const showOutput = (output) => {
   const div = outputDiv();
   div.innerHTML = `${JSON.stringify(output, null, 2)}\n\n${div.innerHTML}`;
+  clearOutputButton().style.display = 'inline-block';
 };
 
 worker.addEventListener('message', (event) => {
@@ -32,6 +35,7 @@ worker.addEventListener('message', (event) => {
 worker.addEventListener('error', showError);
 
 document.addEventListener('DOMContentLoaded', () => {
+  clearOutputButton().addEventListener('click', clearOutput);
   initOpen(worker, showError);
   initExecSQL(worker, showError);
   initInsert(worker, showError);
@@ -50,7 +54,3 @@ document.addEventListener('DOMContentLoaded', () => {
     { dropdownOptions: { coverTrigger: false } },
   );
 });
-
-document
-  .getElementById('clear-output')
-  .addEventListener('click', clearOutput);

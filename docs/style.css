@@ -7,6 +7,10 @@ footer {
   margin-top: 2em;
 }
 
+footer.busy button {
+  display: none;
+}
+
 .CodeMirror {
   margin: 1em;
   border: 1px solid #2196f3;
@@ -22,9 +26,15 @@ textarea {
 .input-field {
   display: inline-block;
   margin-right: 1em;
+  max-width: 8em;
 }
 
 .card-panel {
   margin-left: auto;
   margin-right: auto;
+}
+
+
+#clear-output {
+  display: none;
 }

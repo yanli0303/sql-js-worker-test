@@ -6,14 +6,16 @@ const showProgress = (button) => {
   progress.className = 'progress';
   progress.appendChild(inner);
 
-  button.style.display = 'none';
-  button.parentElement.insertBefore(progress, button);
+  const parent = button.parentElement;
+  parent.className += ' busy';
+  parent.insertBefore(progress, button);
   return progress;
 };
 
-const hideProgress = (progress, button) => {
-  progress.parentElement.removeChild(progress);
-  button.style.display = '';
+const hideProgress = (progress) => {
+  const parent = progress.parentElement;
+  parent.className = parent.className.replace(/\sbusy$/, '');
+  parent.removeChild(progress);
 };
 
 export const sendRequest = (
@@ -36,7 +38,7 @@ export const sendRequest = (
   const teardown = () => {
     worker.removeEventListener('message', onmessage);
     worker.removeEventListener('error', teardown);
-    hideProgress(progress, button);
+    hideProgress(progress);
   };
 
   onmessage = (event) => {

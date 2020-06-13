@@ -14,28 +14,34 @@
 </head>
 <body>
 <header class="container center-align">
-  <h5>sql.js + Worker + IndexedDB v1.2</h5>
+  <h5>sql.js + Worker + IndexedDB</h5>
   <p>
     CPU usage, RAM usage, IndexedDB as storage, and FTS search tests
     against <a target="_blank"
       href="https://github.com/sql-js/sql.js">sql.js</a> using Workers.
   </p>
-  <p>Remember to open DevTools and monitor the console messages.</p>
+  <ul class="left-align browser-default">
+    <li>Be sure to open DevTools and monitor the console messages.</li>
+    <li>Open <code>Task Manager</code> / <code>Activity Monitor</code> and
+      monitor the CPU and RAM usage. It's useful to set the refresh rate to
+      high.
+    </li>
+  </ul>
 </header>
 <div class="container card-panel">
   <div class="row">
     <ul class="tabs">
-      <li class="tab col s3"><a class="active" href="#action-open">OPEN</a></li>
-      <li class="tab col s3"><a href="#action-exec-sql">EXEC SQL</a></li>
-      <li class="tab col s3"><a href="#action-insert">INSERT</a></li>
-      <li class="tab col s3"><a href="#action-match">MATCH</a></li>
-      <li class="tab col s3"><a href="#action-clear">CLEAR</a></li>
+      <li class="tab col"><a class="active" href="#action-open">OPEN</a></li>
+      <li class="tab col"><a href="#action-exec-sql">EXEC SQL</a></li>
+      <li class="tab col"><a href="#action-insert">INSERT</a></li>
+      <li class="tab col"><a href="#action-match">MATCH</a></li>
+      <li class="tab col"><a href="#action-clear">CLEAR</a></li>
     </ul>
     <tab class="col s12" id="action-open">
       <ol>
         <li>Load sql.js library in worker - one time only;</li>
         <li>Creates SQLite database;</li>
-        <li>Load data from IndexedDB if any.</li>
+        <li>Load data from the IndexedDB if any.</li>
       </ol>
       <footer>
         <button class="waves-effect waves-light btn blue" id="btn-open">OPEN
@@ -68,7 +74,8 @@
       </footer>
     </tab>
     <tab class="col s12" id="action-insert">
-      <p class="center-align">Insert into SQLite database</p>
+      <p class="center-align">Insert into SQLite database, below is the example
+        insertion SQL.</p>
       <textarea disabled id='ta-insert-demo'></textarea>
       <footer>
         <div class="input-field">
@@ -93,11 +100,18 @@
       </footer>
     </tab>
     <tab class="col s12" id="action-match">
+      <ul class="browser-default">
+        <li><strong>Match Whole</strong>: match the entered text as a whole to
+          all TEXT type table columns.</li>
+        <li><strong>Match Line by Line</strong>: split the entered text by new
+          line characters, create a TEMPORARY TABLE with the text lines
+          and match all TEXT type table columns using CROSS JOIN.</li>
+      </ul>
       <textarea id='ta-match-text'
         placeholder="Enter any text here..."></textarea>
       <footer class="center-align">
-        <button class="waves-effect waves-light btn blue"
-          id="btn-match-whole">MATCH
+        <button class="waves-effect waves-light btn blue" id="btn-match-whole"
+          title="">MATCH
           WHOLE</button>
         <button class="waves-effect waves-light btn cyan"
           id="btn-match-cross-join">MATCH
