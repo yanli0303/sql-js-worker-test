@@ -15,8 +15,6 @@
     "prebuild": "eslint src --fix",
     "watch": "webpack --watch --mode production",
     "build": "webpack --mode production",
-    "transpile": "babel src/ -d dist/ --copy-files --source-maps --ignore '**/*.test.js' --delete-dir-on-start",
-    "postbuild": "node scripts/postbuild.js",
     "start": "tsdx watch",
     "prepublishOnly": "yarn build"
   },
