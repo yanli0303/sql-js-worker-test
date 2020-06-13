@@ -1,3 +1,4 @@
+import 'core-js';
 import { createWorker } from './createWorker';
 import { init as initExecSQL } from './tabs/execSQL';
 import { init as initOpen } from './tabs/open';

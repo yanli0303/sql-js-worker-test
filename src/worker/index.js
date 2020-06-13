@@ -1,3 +1,4 @@
+import 'core-js';
 import { handleClear } from './handlers/handleClear';
 import { handleExecSQL } from './handlers/handleExecSQL';
 import { handleInsert } from './handlers/handleInsert';
