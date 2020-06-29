@@ -20,10 +20,14 @@ export const handleOpen = async (request, globals) => {
     console.error('Failed to load data from IndexedDB, ignored and opening SQLite database:', error);
   });
 
-  let sql = null;
+  let backup = null;
   if (data) {
-    sql = data instanceof Uint8Array ? data : new Uint8Array(data);
+    backup = data instanceof Uint8Array ? data : new Uint8Array(data);
   }
 
-  globals.sqlite = new globals.SQLiteDBClass(sql);
+  globals.sqlite = new globals.SQLiteDBClass(backup);
+
+  // https://www.sqlite.org/pragma.html#pragma_auto_vacuum
+  console.log('Setting auto_vacuum to FULL...');
+  globals.sqlite.exec('PRAGMA auto_vacuum = FULL;');
 };

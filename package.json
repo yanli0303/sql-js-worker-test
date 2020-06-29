@@ -15,7 +15,6 @@
     "prebuild": "eslint src --fix",
     "watch": "webpack --watch --mode production",
     "build": "webpack --mode production",
-    "start": "tsdx watch",
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
