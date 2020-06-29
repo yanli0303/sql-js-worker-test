@@ -87,6 +87,10 @@ export const handleInsert = async (request, globals) => {
     await bulkInsert(table, rows, sqlite, bulk);
   }
 
+  // https://www.sqlite.org/pragma.html#pragma_shrink_memory
+  console.log('executing "PRAGMA shrink_memory"...');
+  sqlite.exec('PRAGMA shrink_memory;');
+
   const buffer = sqlite.export();
   await saveToIndexedDB(
     INDEXED_DB_NAME,

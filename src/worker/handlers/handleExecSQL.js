@@ -15,6 +15,10 @@ export const handleExecSQL = async (request, globals) => {
   console.log('Executing SQL:', sql);
   const result = sqlite.exec(sql, params);
 
+  // https://www.sqlite.org/pragma.html#pragma_shrink_memory
+  console.log('executing "PRAGMA shrink_memory"...');
+  sqlite.exec('PRAGMA shrink_memory;');
+
   if (!readonly) {
     console.log('Not readonly, saving changes to IndexedDB.');
     const buffer = sqlite.export();
